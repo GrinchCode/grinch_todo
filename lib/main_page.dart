@@ -4,7 +4,6 @@ import 'package:todo/colors.dart';
 import 'package:todo/home/home.dart';
 
 import 'colors.dart';
-import 'colors.dart';
 
 class MainPage extends StatefulWidget {
   @override
