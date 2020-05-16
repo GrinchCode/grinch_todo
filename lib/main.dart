@@ -3,6 +3,8 @@ import 'package:todo/colors.dart';
 import 'package:todo/main_page.dart';
 import 'package:todo/task_page.dart';
 
+import 'colors.dart';
+
 void main() => runApp(GrinchApp());
 
 class GrinchApp extends StatefulWidget {
@@ -17,8 +19,8 @@ class _GrinchAppState extends State<GrinchApp> {
       title: 'TODO Grinch',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
-        primaryColor: primaryColor,
-        accentColor: Color(0xff34b49f),
+        primaryColor: GrinchTheme.primaryColor,
+        accentColor: GrinchTheme.accentColor,
         canvasColor: Colors.transparent,
         scaffoldBackgroundColor: Colors.blueGrey[200],
         cardColor: Colors.white,

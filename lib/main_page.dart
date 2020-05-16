@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:todo/colors.dart';
 import 'package:todo/home/home.dart';
 
+import 'colors.dart';
+import 'colors.dart';
+
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
@@ -70,8 +73,9 @@ class _MainPageState extends State<MainPage> {
                   onPressed: () => page.onPress(),
                   icon: Icon(
                     page.icon,
-                    color:
-                        _currentPage == page.index ? primaryColor : Colors.grey,
+                    color: _currentPage == page.index
+                        ? GrinchColors.blueDark
+                        : Colors.grey,
                   ),
                 );
               } //
@@ -111,7 +115,7 @@ class MainButton extends StatelessWidget {
           height: 60.0,
           width: 60.0,
           child: Material(
-            color: primaryColor,
+            color: GrinchColors.blueDark,
             child: IconButton(
               onPressed: () => page.onPress(),
               icon: Icon(

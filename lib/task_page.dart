@@ -164,7 +164,7 @@ class _BottomContainerState extends State<BottomContainer> {
             child: Container(),
           ),
           FlatButton(
-            color: primaryColor,
+            color: GrinchColors.blueDark,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
