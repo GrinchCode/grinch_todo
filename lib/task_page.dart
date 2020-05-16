@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todo/colors.dart';
 
 class TaskPage extends StatefulWidget {
   final String type;
@@ -107,81 +106,147 @@ class _BottomContainerState extends State<BottomContainer> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text(
-            'Category',
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16.0,
+          TaskTile(
+            title: 'Category',
+            child: TaskTags(
+              categories: categories,
+              onAddTag: (entry) => categories.addEntries([entry]),
             ),
-          ),
-          Wrap(
-            children: categories
-                .map<String, Widget>((title, color) {
-                  return MapEntry(
-                      title,
-                      Container(
-                        margin: EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: color.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 15.0,
-                          vertical: 10.0,
-                        ),
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: color,
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      ));
-                })
-                .values
-                .toList(),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FlatButton(
-                color: Colors.green,
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                onPressed: () {
-                  setState(() {
-                    categories['Wibo 3'] = Colors.pink;
-                  });
-                },
-                child: Text('Add tag'),
-                textColor: Colors.white,
-              ),
-            ],
           ),
           Expanded(
             child: Container(),
           ),
+          PrimaryButton(
+            text: 'Create Task',
+            onTap: () => print('presionado'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TaskTile extends StatelessWidget {
+  const TaskTile({
+    Key key,
+    @required this.child,
+    @required this.title,
+  })  : assert(child != null),
+        assert(title != null && title.length > 0,
+            "El `title` debe ser un string no vacio"),
+        super(key: key);
+
+  final String title;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Text(
+          'Category',
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 16.0,
+          ),
+        ),
+        child,
+      ],
+    );
+  }
+}
+
+class TaskTags extends StatelessWidget {
+  const TaskTags({Key key, this.categories, this.onAddTag}) : super(key: key);
+
+  final Map<String, Color> categories;
+  final ValueSetter<MapEntry<String, Color>> onAddTag;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      Wrap(
+        children: [
+          for (final entry in categories.entries)
+            TaskTag(tag: entry.key, color: entry.value)
+        ],
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
           FlatButton(
-            color: GrinchColors.blueDark,
+            color: Colors.green,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
-            onPressed: () {},
-            padding: EdgeInsets.symmetric(
-              vertical: 15.0,
-            ),
-            child: Text(
-              'Create task',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-              ),
-            ),
+            onPressed: () => onAddTag(MapEntry('Wibo 3', Colors.pink)),
+            child: Text('Add tag'),
+            textColor: Colors.white,
           ),
         ],
+      ),
+    ]);
+  }
+}
+
+class TaskTag extends StatelessWidget {
+  const TaskTag({Key key, this.tag, this.color}) : super(key: key);
+
+  final String tag;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(5.0),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: 15.0,
+        vertical: 10.0,
+      ),
+      child: Text(
+        tag,
+        style: TextStyle(
+          color: color,
+          fontSize: 16.0,
+        ),
+      ),
+    );
+  }
+}
+
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({
+    Key key,
+    @required this.text,
+    this.onTap,
+  })  : assert(text != null),
+        super(key: key);
+
+  final String text;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+      color: Theme.of(context).primaryColor,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      onPressed: onTap,
+      padding: EdgeInsets.symmetric(vertical: 15.0),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 18.0,
+        ),
       ),
     );
   }
