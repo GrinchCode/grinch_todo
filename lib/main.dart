@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo/colors.dart';
+//import 'package:todo/colors.dart';
+
 import 'package:todo/main_page.dart';
 import 'package:todo/task_page.dart';
 
@@ -17,6 +18,7 @@ class _GrinchAppState extends State<GrinchApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TODO Grinch',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
         primaryColor: GrinchTheme.primaryColor,
