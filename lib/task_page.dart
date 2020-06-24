@@ -42,19 +42,14 @@ class _TaskPageState extends State<TaskPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.0,
-                vertical: 20.0,
-              ).copyWith(bottom: 50.0),
+              padding: const EdgeInsets.all(20).copyWith(bottom: 50.0),
               child: TextField(
-                style: TextStyle(
-                  fontSize: 20.0,
-                ),
+                style: const TextStyle(fontSize: 20.0),
                 decoration: InputDecoration(
                   hintText: 'Name',
                   labelText: 'Name',
-                  contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-                  labelStyle: TextStyle(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
+                  labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 20.0,
                   ),
