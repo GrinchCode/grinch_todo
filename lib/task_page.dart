@@ -132,8 +132,9 @@ class TaskTile extends StatelessWidget {
     @required this.child,
     @required this.title,
   })  : assert(child != null),
+        // ignore: prefer_is_empty
         assert(title != null && title.length > 0,
-            "El `title` debe ser un string no vacio"),
+            'El `title` debe ser un string no vacio'),
         super(key: key);
 
   final String title;
