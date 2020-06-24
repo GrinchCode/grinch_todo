@@ -102,9 +102,7 @@ class _HeaderContainerState extends State<HeaderContainer> {
   Widget build(BuildContext context) {
     return Container(
       height: 200.0,
-      padding: EdgeInsets.symmetric(
-        horizontal: 10.0,
-      ).copyWith(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0).copyWith(
         top: MediaQuery.of(context).padding.top,
       ),
       decoration: BoxDecoration(
